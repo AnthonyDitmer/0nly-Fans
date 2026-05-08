@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Only Fans – Premium Fans Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #ff6b6b;
+      --dark: #222;
+      --light: #f7f7f7;
+      --accent: #4ecdc4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: var(--dark);
+    }
+
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cart-btn span {
+      background: #fff;
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 0.1rem 0.5rem;
+      font-size: 0.75rem;
+      min-width: 1.4rem;
+      text-align: center;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      padding: 3rem 8vw 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #fff5f5, #f0fbff);
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      max-width: 30rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .hero-badge {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .hero-badge span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-badge span::before {
+      content: "★";
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .hero-image {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-image .fan-circle {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ffecec);
+      border: 8px solid #ffe0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fan-blades {
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      position: relative;
+      animation: spin 4s linear infinite;
+    }
+
+    .fan-blades::before,
+    .fan-blades::after {
+      content: "";
+      position: absolute;
+      inset: 50%;
+      width: 120%;
+      height: 0.2rem;
+      background: var(--primary);
+      transform-origin: left center;
+    }
+
+    .fan-blades::before {
+      transform: rotate(60deg) translateX(-50%);
+    }
+
+    .fan-blades::after {
+      transform: rotate(-60deg) translateX(-50%);
+    }
+
+    .fan-center {
+      position: absolute;
+      inset: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 6px #ffe0e0;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    main {
+      padding: 2rem 8vw 3rem;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .section-title h2 {
+      font-size: 1.4rem;
+    }
+
+    .section-title small {
+      color: #777;
+      font-size: 0.85rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-pill {
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: #fff;
+      color: #555;
+    }
+
+    .filter-pill.active {
+      background: var(--dark);
+      color: #fff;
+      border-color: var(--dark);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-desc {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 0.7rem;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .price span {
+      font-size: 0.8rem;
+      color: #888;
+      text-decoration: line-through;
+      margin-left: 0.4rem;
+    }
+
+    .rating {
+      font-size: 0.8rem;
+      color: #f5a623;
+    }
+
+    .add-btn {
+      margin-top: 0.7rem;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .add-btn:hover {
+      background: #000;
+    }
+
+    .footer {
+      border-top: 1px solid #eee;
+      padding: 1.5rem 8vw 2rem;
+      font-size: 0.8rem;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer a {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--primary);
+    }
+
+    .cart-panel {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      padding: 1rem;
+      width: 260px;
+      max-height: 60vh;
+      display: none;
+      flex-direction: column;
+      font-size: 0.85rem;
+      z-index: 20;
+    }
+
+    .cart-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .cart-items {
+      overflow-y: auto;
+      margin-bottom: 0.6rem;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 0.4rem 0;
+      max-height: 30vh;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.4rem 0;
+      font-weight: 600;
+    }
+
+    .cart-panel button {
+      font-size: 0.8rem;
+    }
+
+    .close-cart {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      header {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Only <span>Fans</span></div>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#support">Support</a>
+      <button class="cart-btn" id="cartToggle">
+        Cart
+        <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Stay cool with <span>Only Fans</span>.</h1>
+      <p>
+        From silent desk fans to powerful tower coolers, Only Fans is your one-stop shop
+        for premium airflow with zero drama.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="scrollToShop()">Shop bestsellers</button>
+        <button class="btn-outline">View summer deals</button>
+      </div>
+      <div class="hero-badge">
+        <span>4.9/5 average rating</span>
+        <span>Free shipping over $50</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="fan-circle">
+        <div class="fan-blades"></div>
+        <div class="fan-center"></div>
+      </div>
+      <div class="hero-tag">“The only fans I actually need.” – happy customer</div>
+    </div>
+  </section>
+
+  <main>
+    <section id="shop">
+      <div class="section-title">
+        <h2>Featured fans</h2>
+        <small>Curated picks from the Only Fans collection</small>
+      </div>
+
+      <div class="filters">
+        <button class="filter-pill active">All</button>
+        <button class="filter-pill">Desk</button>
+        <button class="filter-pill">Tower</button>
+        <button class="filter-pill">Smart</button>
+        <button class="filter-pill">Portable</button>
+      </div>
+
+      <div class="products-grid" id="products">
+        <!-- Product 1 -->
+        <article class="product-card" data-name="Breeze Desk Fan" data-price="29.99">
+          <div>
+            <div class="product-tag">Desk fan</div>
+            <div class="product-name">Breeze Mini Desk Fan</div>
+            <p class="product-desc">
+              Ultra-quiet, USB-powered fan perfect for work-from-home setups and late-night gaming.
+            </p>
+          </div>
+          <div>
+            <div class="product-meta">
+              <div class="price">$29.99 <span>$39.99</span></div>
+              <div class="rating">★★★★☆</div>
+            </div>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card" data-name="Zen Tower Fan" data-price="89.99">
+          <div>
+            <div class="product-tag">Tower fan</div>
+            <div class="product-name">Zen Tower Fan Pro</div>
+            <p class="product-desc">
+              Slim, powerful tower fan with 3 cooling modes and a sleep-friendly night mode.
+            </p>
+          </div>
+          <div>
+            <div class="product-meta">
+              <div class="price">$89.99 <span>$109.99</span></div>
+              <div class="rating">★★★★★</div>
+            </div>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card" data-name="Smart AirFlow" data-price="129.99">
+          <div>
+            <div class="product-tag">Smart fan</div>
+            <div class="product-name">Smart AirFlow 360</div>
+            <p class="product-desc">
+              Wi‑Fi enabled, app-controlled fan with room temperature sensing and voice assistant support.
+            </p>
+          </div>
+          <div>
+            <div class="product-meta">
+              <div class="price">$129.99</div>
+              <div class="rating">★★★★★</div>
+            </div>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card" data-name="Pocket Breeze" data-price="19.99">
+          <div>
+            <div class="product-tag">Portable fan</div>
+            <div class="product-name">Pocket Breeze Go</div>
+            <p class="product-desc">
+              Handheld rechargeable fan that fits in your bag—perfect for festivals, commutes, and hot classrooms.
+            </p>
+          </div>
+          <div>
+            <div class="product-meta">
+              <div class="price">$19.99</div>
+              <div class="rating">★★★★☆</div>
+            </div>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top: 3rem;">
+      <div class="section-title">
+        <h2>About Only Fans</h2>
+        <small>Yes, we know what you’re thinking.</small>
+      </div>
+      <p style="color:#555; max-width: 40rem; font-size:0.9rem; line-height:1.5;">
+        Only Fans started as a joke between friends who were tired of boring, noisy fans that looked like they were
+        designed in the 90s. We decided to build a fan store that doesn’t just keep you cool, but also makes you
+        smile every time you look at it. Modern design, quiet performance, and a name you’ll never forget.
+      </p>
+    </section>
+
+    <section id="support" style="margin-top: 3rem;">
+      <div class="section-title">
+        <h2>Support & FAQ</h2>
+        <small>We’ve got your back (and your airflow).</small>
+      </div>
+      <p style="color:#555; max-width: 40rem; font-size:0.9rem; line-height:1.5;">
+        Have questions about shipping, returns, or warranties? Reach out to our support team at
+        <strong>support@onlyfans.cool</strong> and we’ll respond within one business day. All fans come with a
+        2‑year limited warranty and 30‑day no‑questions‑asked returns.
+      </p>
+    </section>
+  </main>
+
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <strong>Your cart</strong>
+      <button class="close-cart" id="closeCart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <button class="btn-primary" style="width:100%; margin-top:0.4rem;">Checkout (mock)</button>
+  </div>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Only Fans – All rights reserved.</span>
+    <span>
+      <a href="#">Privacy</a> ·
+      <a href="#">Terms</a>
+    </span>
+  </footer>
+
+  <script>
+    const cart = [];
+    const cartCountEl = document.getElementById("cartCount");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const cartPanel = document.getElementById("cartPanel");
+    const cartToggle = document.getElementById("cartToggle");
+    const closeCart = document.getElementById("closeCart");
+
+    function renderCart() {
+      cartItemsEl.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<p style='color:#777; font-size:0.8rem;'>Your cart is empty. Add some fans!</p>";
+      } else {
+        cart.forEach(item => {
+          total += item.price * item.qty;
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML = `
+            <span>${item.name} × ${item.qty}</span>
+            <span>$${(item.price * item.qty).toFixed(2)}</span>
+          `;
+          cartItemsEl.appendChild(row);
+        });
+      }
+
+      cartTotalEl.textContent = "$" + total.toFixed(2);
+      cartCountEl.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+    }
+
+    function addToCart(name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      renderCart();
+    }
+
+    document.querySelectorAll(".add-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const card = e.target.closest(".product-card");
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        addToCart(name, price);
+        cartPanel.style.display = "flex";
+      });
+    });
+
+    cartToggle.addEventListener("click", () => {
+      cartPanel.style.display = cartPanel.style.display === "flex" ? "none" : "flex";
+    });
+
+    closeCart.addEventListener("click", () => {
+      cartPanel.style.display = "none";
+    });
+
+    function scrollToShop() {
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
